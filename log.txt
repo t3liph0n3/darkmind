@@ -1,5 +1,5 @@
-Tue Mar 12 18:00:22 2019
-Linux-4.15.0-45-generic-x86_64-with-Ubuntu-18.04-bionic
+Tue Mar 12 22:12:03 2019
+Linux-4.15.0-46-generic-x86_64-with-Ubuntu-18.04-bionic
 Ren'Py 6.99.14.1.3218
  
 
@@ -7,7 +7,7 @@ Bootstrap to the start of init.init took 0.07s
 Early init took 0.00s
 Loader init took 0.00s
 Loading error handling took 0.08s
-Loading script took 1.19s
+Loading script took 1.17s
 Loading save slot metadata. took 0.00s
 Loading persistent took 0.00s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
@@ -23,14 +23,14 @@ Initial gc. took 0.02s
 DPI scale factor: 1.000000
 Creating interface object took 0.05s
 Cleaning stores took 0.00s
-Init translation took 0.02s
+Init translation took 0.03s
 Build styles took 0.00s
-Load screen analysis took 0.00s
-Analyze screens took 0.01s
-Save screen analysis took 0.06s
-Prepare screens took 0.05s
+Load screen analysis took 0.04s
+Analyze screens took 0.00s
+Save screen analysis took 0.00s
+Prepare screens took 0.06s
 Save pyanalysis. took 0.00s
-Save bytecode. took 0.05s
+Save bytecode. took 0.06s
 Running _start took 0.02s
 Performance test:
 Interface start took 0.02s
@@ -301,24 +301,476 @@ Texture testing:
 - 512px textures work.
 - 1024px textures work.
 - 2048px textures work.
-Total time until interface ready: 2.21220684052s
+Total time until interface ready: 2.19430303574s
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.006724 seconds.
-- Frame drawn at 0.010333 seconds.
-- Frame drawn at 0.014010 seconds.
-- Frame drawn at 0.016113 seconds.
-- 0.016113 seconds to render 5 frames.
-[x] is x
-[x] is x
-[x] is x
-[x] is x
-[x] is x
-Success
+- Frame drawn at 0.006271 seconds.
+- Frame drawn at 0.009940 seconds.
+- Frame drawn at 0.023947 seconds.
+- Frame drawn at 0.039951 seconds.
+- 0.039951 seconds to render 5 frames.
+
+Full traceback:
+  File "game/script.rpy", line 45, in script
+    $hacker.command(siloA)
+  File "/usr/share/games/renpy/renpy/ast.py", line 848, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "/usr/share/games/renpy/renpy/python.py", line 1812, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/script.rpy", line 45, in <module>
+    $hacker.command(siloA)
+  File "game/script.rpy", line 77, in command
+    narrator ("{} has {} pro on this level".format(target.name, target.prot.name))
+  File "/usr/share/games/renpy/renpy/character.py", line 1013, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "/usr/share/games/renpy/renpy/character.py", line 817, in do_display
+    **display_args)
+  File "/usr/share/games/renpy/renpy/character.py", line 566, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "/usr/share/games/renpy/renpy/ui.py", line 287, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2624, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 401, in visit_all
+    callback(self)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 411, in per_interact
+    self.update()
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 592, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+  File "<screen language>", line 104, in <module>
+NameError: name 'positon' is not defined
+
+While running game code:
+  File "game/script.rpy", line 45, in script
+    $hacker.command(siloA)
+  File "game/script.rpy", line 45, in <module>
+    $hacker.command(siloA)
+  File "game/script.rpy", line 77, in command
+    narrator ("{} has {} pro on this level".format(target.name, target.prot.name))
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+NameError: name 'positon' is not defined
+
+Full traceback:
+  File "game/script.rpy", line 45, in script
+    $hacker.command(siloA)
+  File "/usr/share/games/renpy/renpy/ast.py", line 848, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "/usr/share/games/renpy/renpy/python.py", line 1812, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/script.rpy", line 45, in <module>
+    $hacker.command(siloA)
+  File "game/script.rpy", line 77, in command
+    narrator ("{} has {} pro on this level".format(target.name, target.prot.name))
+  File "/usr/share/games/renpy/renpy/character.py", line 1013, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "/usr/share/games/renpy/renpy/character.py", line 817, in do_display
+    **display_args)
+  File "/usr/share/games/renpy/renpy/character.py", line 566, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "/usr/share/games/renpy/renpy/ui.py", line 287, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2624, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 401, in visit_all
+    callback(self)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 411, in per_interact
+    self.update()
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 592, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+  File "<screen language>", line 104, in <module>
+NameError: name 'positon' is not defined
+
+While running game code:
+  File "game/script.rpy", line 45, in script
+    $hacker.command(siloA)
+  File "game/script.rpy", line 45, in <module>
+    $hacker.command(siloA)
+  File "game/script.rpy", line 77, in command
+    narrator ("{} has {} pro on this level".format(target.name, target.prot.name))
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+NameError: name 'positon' is not defined
+
+Full traceback:
+  File "game/script.rpy", line 48, in script
+    "You win"
+  File "/usr/share/games/renpy/renpy/ast.py", line 609, in execute
+    statement_name("say")
+  File "/usr/share/games/renpy/renpy/ast.py", line 43, in statement_name
+    i(name)
+  File "renpy/common/000window.rpy", line 98, in _window_auto_callback
+    _window_show()
+  File "renpy/common/000window.rpy", line 60, in _window_show
+    renpy.with_statement(trans)
+  File "/usr/share/games/renpy/renpy/exports.py", line 1409, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2190, in do_with
+    clear=clear)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2624, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 401, in visit_all
+    callback(self)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 411, in per_interact
+    self.update()
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 592, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+  File "<screen language>", line 104, in <module>
+NameError: name 'positon' is not defined
+
+While running game code:
+  File "game/script.rpy", line 48, in script
+    "You win"
+  File "renpy/common/000window.rpy", line 98, in _window_auto_callback
+    _window_show()
+  File "renpy/common/000window.rpy", line 60, in _window_show
+    renpy.with_statement(trans)
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+NameError: name 'positon' is not defined
 Cleaning stores took 0.00s
 Init translation took 0.14s
 Build styles took 0.01s
-Load screen analysis took 0.04s
+Load screen analysis took 0.01s
 Analyze screens took 0.00s
 Prepare screens took 0.00s
 Running _start took 0.00s
+
+Full traceback:
+  File "game/script.rpy", line 45, in script
+    $hacker.command(siloA)
+  File "/usr/share/games/renpy/renpy/ast.py", line 848, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "/usr/share/games/renpy/renpy/python.py", line 1812, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/script.rpy", line 45, in <module>
+    $hacker.command(siloA)
+  File "game/script.rpy", line 77, in command
+    narrator ("{} has {} pro on this level".format(target.name, target.prot.name))
+  File "/usr/share/games/renpy/renpy/character.py", line 1013, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "/usr/share/games/renpy/renpy/character.py", line 817, in do_display
+    **display_args)
+  File "/usr/share/games/renpy/renpy/character.py", line 566, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "/usr/share/games/renpy/renpy/ui.py", line 287, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2624, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 401, in visit_all
+    callback(self)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 411, in per_interact
+    self.update()
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 592, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+  File "<screen language>", line 104, in <module>
+NameError: name 'positon' is not defined
+
+While running game code:
+  File "game/script.rpy", line 45, in script
+    $hacker.command(siloA)
+  File "game/script.rpy", line 45, in <module>
+    $hacker.command(siloA)
+  File "game/script.rpy", line 77, in command
+    narrator ("{} has {} pro on this level".format(target.name, target.prot.name))
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+NameError: name 'positon' is not defined
+
+Full traceback:
+  File "game/script.rpy", line 45, in script
+    $hacker.command(siloA)
+  File "/usr/share/games/renpy/renpy/ast.py", line 848, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "/usr/share/games/renpy/renpy/python.py", line 1812, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/script.rpy", line 45, in <module>
+    $hacker.command(siloA)
+  File "game/script.rpy", line 77, in command
+    narrator ("{} has {} pro on this level".format(target.name, target.prot.name))
+  File "/usr/share/games/renpy/renpy/character.py", line 1013, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "/usr/share/games/renpy/renpy/character.py", line 817, in do_display
+    **display_args)
+  File "/usr/share/games/renpy/renpy/character.py", line 566, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "/usr/share/games/renpy/renpy/ui.py", line 287, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2624, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 401, in visit_all
+    callback(self)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 411, in per_interact
+    self.update()
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 592, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+  File "<screen language>", line 104, in <module>
+NameError: name 'positon' is not defined
+
+While running game code:
+  File "game/script.rpy", line 45, in script
+    $hacker.command(siloA)
+  File "game/script.rpy", line 45, in <module>
+    $hacker.command(siloA)
+  File "game/script.rpy", line 77, in command
+    narrator ("{} has {} pro on this level".format(target.name, target.prot.name))
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+NameError: name 'positon' is not defined
+
+Full traceback:
+  File "game/script.rpy", line 48, in script
+    "You win"
+  File "/usr/share/games/renpy/renpy/ast.py", line 609, in execute
+    statement_name("say")
+  File "/usr/share/games/renpy/renpy/ast.py", line 43, in statement_name
+    i(name)
+  File "renpy/common/000window.rpy", line 98, in _window_auto_callback
+    _window_show()
+  File "renpy/common/000window.rpy", line 60, in _window_show
+    renpy.with_statement(trans)
+  File "/usr/share/games/renpy/renpy/exports.py", line 1409, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2190, in do_with
+    clear=clear)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2624, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 401, in visit_all
+    callback(self)
+  File "/usr/share/games/renpy/renpy/display/core.py", line 2999, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 411, in per_interact
+    self.update()
+  File "/usr/share/games/renpy/renpy/display/screen.py", line 592, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+  File "<screen language>", line 104, in <module>
+NameError: name 'positon' is not defined
+
+While running game code:
+  File "game/script.rpy", line 48, in script
+    "You win"
+  File "renpy/common/000window.rpy", line 98, in _window_auto_callback
+    _window_show()
+  File "renpy/common/000window.rpy", line 60, in _window_show
+    renpy.with_statement(trans)
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 99, in execute
+    screen battle_ui:
+  File "game/script.rpy", line 100, in execute
+    use battle_frame(char=hacker, position=(.05,.05))
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 103, in execute
+    screen battle_frame:
+  File "game/script.rpy", line 104, in execute
+    frame area (0, 0, 180, 80) align positon:
+  File "game/script.rpy", line 104, in keywords
+    frame area (0, 0, 180, 80) align positon:
+NameError: name 'positon' is not defined
