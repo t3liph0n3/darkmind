@@ -9,9 +9,11 @@ define e = Character("Eileen")
 
 label start:
 
-    # # # # # #
-    #  Battle system originally copied from: https://lemmasoft.renai.us/forums/viewtopic.php?p=295367#p295367
-    # # # # # #
+# # # # # #
+# Battle system 
+# # # # # #
+
+    define rnarrator = nvl_narrator
 
     # Create pros (name, loc, tic, tok, pwd, tkn)
     $ioni = pro("ionian", 1, 0, 1, 1, 0)
@@ -54,27 +56,28 @@ init -1 python:
             self.pros = pros
             self.def_pro = def_pro
 
-        # BATTLES! (Actually called silo_runs)
-        # 1) explain the silo being run on...
-        #   2) the silo pops outer pro - to defend self
-        #   3) player selects pro to attempt communication
-        #   4) compare pro (if players greater silo pro is lost -1hp too)
+        # BATTLES! (called silo_runs)
+        # 1) give the name of the silo/target
+        #   2) the silo pops() pro to challenge hacker
+        #   3) player selects pro to defeat silo's pro
+        #   4) compare pro (if hacker > then silo -1hp)
         #   5) if silo hp > 0 go back to step 2 repeat
-        #
+        # 6) move on with the story
         def silo_run(self, target):
-            narrator ("> starting run against silo:{}".format(target.name))
+            nvl_clear()
+            rnarrator (">>_ starting run against {}\n".format(target.name))
             while target.hp>0:
                 self.command(target)
                 if self.hp < 1:
-                    narrator ("gameover")
+                    rnarrator ("gameover")
                     renpy.full_restart()
-            narrator ("//conected to {}".format(target.name))
+            rnarrator ("//* * *\n// now connected to {}".format(target.name))
             return
 
         # Player chooses an app for the attack
         def command(self, target):            
             target.pro = target.pros.pop()
-            narrator ("{} has {}:pro installed.\n\n Against {}:pro I should use...".format(target.name,target.pro.name,target.pro.name))
+            rnarrator ("//* {} has active {}:pro\n>>_ select protocol   (or end run)".format(target.name,target.pro.name))
             self.pro = renpy.call_screen("command")
             self.attack(self.pro, target.pro, target)
             if target.hp < 1:
@@ -84,11 +87,11 @@ init -1 python:
         # check that the choice matches/betters the defense pro
         def attack(self,pro, prot, target):
             if self.pro.loc >= prot.loc and self.pro.tic >= prot.tic and self.pro.tok >= prot.tok and self.pro.pwd >= prot.pwd and self.pro.tkn >= prot.tkn:
-                narrator ("{} works against {}.\n\n // Connecting...".format(self.pro.name,prot.name))
+                rnarrator ("//* {} has passed {}:pro\n// connecting. . .".format(self.pro.name,prot.name))
                 target.hp -= 1
             else:
                 target.pros.append(prot)
-                narrator ("//{} refusing access from {}'s attack".format(target.name,self.name))
+                rnarrator ("!!\n!!! {} access error".format(target.name))
                 self.hp -= 1
                 # todo: bad thing for bad attempt...
 
@@ -112,9 +115,9 @@ init:
     screen battle_ui(target):
         hbox:
             vbox:    
-                use battle_frame(char=player, position=(1,.1))
+                use battle_frame(char=target, position=(1,.1))
             vbox:
-                use battle_frame(char=target, position=(.95,.5))
+                use battle_frame(char=player, position=(.95,.5))
 
     screen battle_frame:
         frame area (0, 0, 140, 80) align position:
@@ -125,10 +128,12 @@ init:
                     text "[char.hp]/[char.max_hp]" xalign 1.0
 
     # # # # # # 
-    # End of Battle System (lines 12 - 103)
+    # End of Battle System (lines 12 - 129)
     # # # # # #
 
 label battle:
+
+    "welcome..." 
     show screen battle_ui(Demon)
     $ player.silo_run(Demon)
     hide screen battle_ui
