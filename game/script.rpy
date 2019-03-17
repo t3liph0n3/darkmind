@@ -2,7 +2,7 @@
 # by Shane George (https://github.com/t3liph0n3) 2019
 
 # .: Characters :. 
-define e = Character("Eileen")
+define c = Character("Cali")
 
 
 # .: Game Start :.
@@ -15,7 +15,7 @@ label start:
 
     define rnarrator = nvl_narrator
 
-    # Create pros (name, loc, tic, tok, pwd, tkn)
+    # Hacker pros (name, loc, tic, tok, pwd, tkn)
     $ioni = pro("ionian", 1, 0, 1, 1, 0)
     $dori = pro("dorian", 0, 1, 0, 1, 1)
     $phry = pro("phrygian", 0, 0, 1, 1, 1)
@@ -131,17 +131,29 @@ init:
     # End of Battle System (lines 12 - 129)
     # # # # # #
 
+transform midright:
+    xalign 0.9
+    yalign 0.6
+
 label battle:
 
-    "welcome..." 
+    show cali-sweat at midright
+    with fade
+    c "welcome..." 
     show screen battle_ui(Demon)
     $ player.silo_run(Demon)
     hide screen battle_ui
 
+    hide cali-sweat
+    with fade
+    "dum dun dum"
+    show cali-smile at midright
     "It worked!"
 
     show screen battle_ui(Cartman)
     $ player.silo_run(Cartman)
     hide screen battle_ui
 
+    show cali-smart at midright
+    with fade
     "So..."
